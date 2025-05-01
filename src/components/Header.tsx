@@ -27,6 +27,9 @@ const Header = () => {
           <Link to="/about" className="text-white hover:text-sky-400 transition-colors text-sm md:text-xl lg:text-3xl font-normal font-['Inria_Serif']">
             About us
           </Link>
+          <Link to="/login" className="text-white hover:text-sky-400 transition-colors text-sm md:text-xl lg:text-3xl font-normal font-['Inria_Serif']">
+            Login
+          </Link>
         </nav>
       </div>
     </header>
