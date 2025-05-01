@@ -1,16 +1,33 @@
-
-import React from "react";
+import React, { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  const servicesRef = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
+  const topRef = useRef<HTMLElement>(null);
+
+  const scrollToServices = () => {
+    servicesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToTop = () => {
+    topRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="w-full bg-white overflow-hidden">
-      <Header />
+      <Header onContactClick={scrollToFooter} onHomeClick={scrollToTop} />
       
       {/* Hero Section */}
-      <section className="relative pt-20">
-        <div className="w-full h-[70vh] md:h-[80vh] lg:h-[90vh] relative overflow-hidden">
+      <section ref={topRef} className="relative pt-20">
+        <div className="w-full h-[85vh] md:h-[90vh] lg:h-[95vh] relative overflow-hidden">
           <img
             className="w-full h-full object-cover object-center"
             src="/images/carbg.png"
@@ -24,11 +41,17 @@ const LandingPage = () => {
               <button className="bg-zinc-300 rounded-3xl shadow px-12 py-4 text-black text-xl md:text-2xl font-bold font-['Mada'] border border-black">
                 Sign up
               </button>
-              <button className="bg-indigo-900 bg-opacity-80 rounded-3xl shadow px-12 py-4 text-white text-xl md:text-2xl font-bold font-['Mada'] outline outline-[3px] outline-slate-600">
+              <button 
+                onClick={() => navigate('/login')}
+                className="bg-indigo-900 bg-opacity-80 rounded-3xl shadow px-12 py-4 text-white text-xl md:text-2xl font-bold font-['Mada'] outline outline-[3px] outline-slate-600"
+              >
                 Log in
               </button>
             </div>
-            <div className="mt-10 text-slate-950 text-xl md:text-3xl font-bold font-['Lato'] underline cursor-pointer">
+            <div 
+              onClick={scrollToServices}
+              className="mt-10 text-slate-950 text-xl md:text-3xl font-bold font-['Lato'] underline cursor-pointer"
+            >
               Explore our services
             </div>
           </div>
@@ -120,7 +143,7 @@ const LandingPage = () => {
       </section>
       
       {/* Our Services Section */}
-      <section className="py-16 md:py-24">
+      <section ref={servicesRef} className="py-16 md:py-24">
         <h2 className="text-center text-5xl md:text-7xl lg:text-8xl font-bold font-['Inria_Serif'] mb-4">
           Our services
         </h2>
@@ -261,7 +284,7 @@ const LandingPage = () => {
         </div>
       </section>
       
-      <Footer />
+      <Footer ref={footerRef} />
     </div>
   );
 };
