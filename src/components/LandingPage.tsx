@@ -10,7 +10,7 @@ const LandingPage = () => {
       
       {/* Hero Section */}
       <section className="relative pt-20">
-        <div className="w-full h-[50vh] md:h-[70vh] lg:h-[80vh] relative overflow-hidden">
+        <div className="w-full h-[70vh] md:h-[80vh] lg:h-[90vh] relative overflow-hidden">
           <img
             className="w-full h-full object-cover object-center"
             src="/images/carbg.png"
